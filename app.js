@@ -6,7 +6,7 @@ var tweetBank = require('./tweetBank.js');
 var routes = require('./routes/');
 var path = require('path');
 
-// use these routes
+// use these routes yo
 app.use('/', routes);
 
 app.use('/static', Express.static(path.join(__dirname, 'public')));
