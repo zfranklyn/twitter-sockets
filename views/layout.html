@@ -91,9 +91,16 @@
   });
   // When 'new_tweet' events are fired, do something with the packaged tweet
   socket.on('newTweet', function (tweet) { 
-    console.log(tweet);
-    alert('Refreshing... check the console...');
     // some logic to add the new tweet to the DOM…
+    var newPost = document.createElement("LI");
+    newPost.innerHTML = "<a href=/users/"+tweet.name+">"+tweet.name+" - </a>" + tweet.text;
+
+    var tweetDeck = document.getElementsByClassName("tweetDeck")[0];
+
+    tweetDeck.appendChild(newPost)
+
+
+
   }); 
   </script>
 </html>

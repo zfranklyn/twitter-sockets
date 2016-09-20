@@ -18,9 +18,6 @@ module.exports = function(io) {
 			root: __dirname + "/../public/stylesheets/"
 		}
 
-		// console.log("FILEPATH: ", options.root);
-		// console.log("FILENAME: ", fileName);
-		// console.log("FULL PATH: ", options.root+fileName);
 
 		res.sendFile(fileName, options, function(err){
 			if (err) {
@@ -51,8 +48,8 @@ module.exports = function(io) {
 	  console.log(req.body.name);
 	  var text = req.body.text;
 	  tweetBank.add(name, text);
-	  res.redirect('/');
-	  io.sockets.emit('newTweet', {tweet:"tweet has been added"});
+	  // res.redirect('/');
+	  io.sockets.emit('newTweet', {name: name, text:text});
 	});
 
 
