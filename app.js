@@ -4,7 +4,12 @@ var morgan = require('morgan');
 var nunjucks = require('nunjucks');
 var tweetBank = require('./tweetBank.js');
 var routes = require('./routes/');
+var path = require('path');
+
+// use these routes
 app.use('/', routes);
+
+app.use('/static', Express.static(path.join(__dirname, 'public')));
 
 // app.use(function(req, res, next){
 //   console.log(req['method'] + " " + req['url']);
