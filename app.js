@@ -5,9 +5,15 @@ var nunjucks = require('nunjucks');
 var tweetBank = require('./tweetBank.js');
 var routes = require('./routes/');
 var path = require('path');
+var bodyParser = require('body-parser');
+var socketio = require('socket.io');
+var server = app.listen(3000);
+var io = socketio.listen(server);
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // use these routes yo
-app.use('/', routes);
+app.use('/', routes(io));
 
 app.use('/static', Express.static(path.join(__dirname, 'public')));
 
@@ -20,6 +26,9 @@ app.use('/static', Express.static(path.join(__dirname, 'public')));
 //   console.log("We're bleeding... Death is near...");
 //   //next();
 // })
+
+
+// access with req.body.name or req.body.content
 
 app.use(morgan(':method :url :status'));
 
@@ -54,6 +63,4 @@ tweetBank.add("Sophia", "Hello Franklyn");
 console.log(tweetBank.find({name: "Sophia"})[0]["content"]);
 
 
-
-app.listen(3000);
 
